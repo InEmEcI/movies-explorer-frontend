@@ -1,0 +1,209 @@
+.movies-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;  
+}
+
+.movies__line {
+  width: 1140px;
+  border: 1px solid #424242;
+  margin: 0 auto;
+}
+
+.movie-cards {
+  max-width: 1140px;
+  padding: 0 70px 30px 70px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;  
+  background-color: #202020;
+}
+
+.movies-card__img {
+  width: 270px;
+  height: 151px;
+}
+
+.movies-card-down {
+  width: 270px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.movies-card-down__name {
+  margin-top: 11px;
+  min-width: 226px;
+  min-height: 32px;
+  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  box-orient: vertical;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.movies-card-down__icon {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.movies-card-down__icon:hover {
+  opacity: .8;
+}
+
+.movies-card__duration {
+  width: 270px;
+  margin-top: 0;
+  margin-bottom: 17px;
+  padding-top: 6px;
+  border-top: 1px solid #424242;
+
+  color: #8B8B8B;
+  font-size: 11px;
+}
+
+.movie-cards-more-btn {
+  width: 320px;
+  height: 36px;
+  margin: 12px auto 80px auto;
+
+  border-radius: 6px;
+  background: #2F2F2F;
+  border: none;
+  cursor: pointer;
+
+  color: #FFF;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+@media screen and (max-width:1279px) {
+
+  .movies {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .movies__line {
+    width: 668px;
+  }
+
+  .movie-cards {
+    width: 708px;
+    padding: 0 10px 0 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;        
+    background-color: #202020;
+  }
+
+  .movies-card {
+    padding: 0;
+  }
+
+  .movies-card__img {
+    width: 339px;
+    height: 190px;
+  }
+
+  .movies-card-down {
+    width: 339px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .movies-card-down__name {    
+    height: 32px;
+    margin: 9px 0 0 0;
+  }
+
+  .movies-card-down__icon {
+    margin: 0 0 8px 0;
+    cursor: pointer;
+  }
+
+  .movies-card__duration {
+    width: 339px;
+    margin: 14px 0 0 0;
+    padding: 6px 0 0 0;
+  }
+
+  .movie-cards-more-btn {
+    margin: 60px auto 50px auto;
+  }
+}
+
+
+@media screen and (max-width:767px) {
+  .movies {
+    margin: 0 auto;
+    padding: 0;
+    width: 300px;
+  }
+
+  .movies__line {
+    width: 292px;
+  }
+
+  .movie-cards {
+    width: 300px;    
+    padding: 0;
+    gap: 31px;
+  }
+
+  .movies-card {
+    padding: 0;
+  }
+
+  .movies-card__img {
+    width: 300px;
+    height: 168px;
+  }
+
+  .movies-card-down {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .movies-card-down__name {
+    width: 315px;
+    height: 32px;
+    margin: 11px 0 0 0;
+    
+    letter-spacing: -0.5px;
+  }
+
+  .movies-card-down__icon {
+    margin: 0 0 8px 0;
+    cursor: pointer;
+  }
+
+  .movies-card__duration {
+    width: 300px;
+    margin: 15px 0 0 0;
+    padding: 5px 0 0 0;
+  }
+
+  .movie-cards-more-btn {
+    margin: 60px auto 50px auto;
+  }
+
+  .movie-cards-more-btn {
+    width: 240px;
+    height: 36px;
+    margin: 60px auto 50px auto;
+  }
+}

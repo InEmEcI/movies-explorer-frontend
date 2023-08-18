@@ -1,0 +1,147 @@
+.search {
+  width: 1140px;
+  padding: 70px 70px 2px 70px;
+  margin: 0 auto;
+}
+
+.search__line {
+  width: 1140px;
+  height: 72px;
+  border-radius: 9px;
+  background: #2f2f2f;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.search__after-line {
+  width: 1140px;
+  margin-top: 68px;
+  border: none;
+  background-color: #424242;
+  height: 1px;
+}
+
+.search__line-left {
+  display: flex;
+}
+
+.search__line-left-icon {
+  width: 34px;
+  height: 34px;
+  margin: 19px 13px 19px 17px;
+}
+
+.search__line-left-input {
+  width: 700px;
+  border: none;
+  border-radius: 9px;
+  background-color: #2f2f2f;
+  outline: none;
+  color: white;
+  font-size: 18px;
+  line-height: 20px;
+  padding-bottom: 0;
+  padding-top: 20px;
+}
+
+.search__line-left-input:focus {
+  border-bottom: 1px solid #4285f4;
+  border-radius: 0px;
+}
+
+.search__line-rigth-btn {
+  width: 59px;
+  height: 34px;
+  margin-top: 20px;
+  margin-left: 362px;
+  border-radius: 48px;
+  background: #4285f4;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.search__line-rigth-switch {
+  width: 36px;
+  height: 20px;
+  margin-top: 26px;
+  margin-left: 29px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1279px) {
+  .search {
+    padding: 80px 30px 80px 30px;
+    width: 708px;
+  }
+
+  .search__line {
+    height: 72px;
+    width: 708px;
+  }
+
+  .search__line-left-input {
+    max-width: 335px;
+  }
+
+  .search__line-rigth-btn {
+    margin-left: 20px;
+  }
+
+  .search__after-line {
+    width: 708px;
+    margin-top: 109px;
+    border: none;
+    background-color: #424242;
+    height: 1px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .search {
+    width: 300px;    
+    padding: 80px 0px 50px 0px;
+  }
+
+  .search__line {
+    width: 300px;
+    display: block;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-radius: 9px;
+  }
+
+  .search__line-left-input {
+    max-width: 190px;
+    font-size: 14px;
+    line-height: 20px;
+    padding-top: 25px;
+    padding-left: 19px;
+  }
+
+  .search__line-rigth-btn {
+    margin-left: 10px;
+  }
+
+  .search__line-rigth-switch {
+    margin-top: 23px;
+  }
+
+  .search__line-left-icon {
+    display: none;
+  }
+
+  .search__after-line {
+    width: 292px;
+    margin-top: 109px;
+    border: none;
+    background-color: #424242;
+    height: 1px;
+  }
+
+}
