@@ -6,7 +6,9 @@ function MoviesCard({ name }) {
     <article className="movies-card">
       <img className="movies-card__img" src={movie_8} alt={name} />
       <div className="movies-card-down">
-        <p className="movies-card-down__name">Gimme Danger: История Игги и The Stooges</p>
+        <p className="movies-card-down__name">
+          Gimme Danger: История Игги и The Stooges
+        </p>
         <button className="movies-card-down__icon"></button>
       </div>
       <p className="movies-card__duration">1ч 42м</p>
