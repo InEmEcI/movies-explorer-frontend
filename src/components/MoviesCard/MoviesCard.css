@@ -1,40 +1,124 @@
+.movies-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 270px;
+  margin: 0;
+  padding: 0;
+}
+
 .movies-card__img {
-    width: 270px;
-    height: 151px;
+  width: 270px;
+  height: 151px;
+  object-fit: contain;
+}
+
+.movies-card-down {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 10px 0 13px;
+  max-width: 270px;
+  border-bottom: 1px solid #424242;
+}
+
+.movies-card-down__name {
+  min-height: 32px;
+  max-width: 226px;
+  padding: 4px 0 0;
+  margin: 0;
+  color: #fff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.movies-card-down__icon {
+  background-image: url(../../images/white-heard-icon.svg);
+  border: 0;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.movies-card__duration {
+  color: #8b8b8b;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 7px 0 0;
+  margin: 0;
+}
+
+
+@media screen and (max-width: 1279px) {
+  .movies-card {
+    max-width: 339px;
+  }
+  
+  .movies-card__img {
+    width: 339px;
+    height: 190px;
   }
   
   .movies-card-down {
-    width: 270px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    padding: 10px 0 25px;
+    max-width: 339px;
+    border-bottom: 1px solid #424242;
   }
   
   .movies-card-down__name {
-    margin-top: 11px;
+    max-width: 295px;
+    min-height: 16px;
+    padding: 4px 0 0;
+    margin: 0;
+    color: #fff;
     font-size: 13px;
+    font-style: normal;
     font-weight: 500;
-    max-width: 226px;
-    min-height: 32px;
-    white-space: nowrap;
-    overflow: hidden;     
-    
-    text-overflow: ellipsis;
-    font-size: 13px;
-    font-weight: 500;
+    line-height: normal;
   }
-  
-  .movies-card-down__icon {
-    
-    margin-bottom: 20px;
-  }
-  
+   
   .movies-card__duration {
-    width: 270px;
-    margin-top: 25px;
-    padding-top: 6px;
-    border-top: 1px solid #424242;
-  
-    color: #8B8B8B;
-    font-size: 11px;
+    padding: 6px 0 0;
   }
+}
+
+@media screen and (max-width: 767px) {
+  .movies-card {
+    max-width: 300px;
+  }
+  
+  .movies-card__img {
+    width: 300px;
+    height: 168px;
+  }
+  
+  .movies-card-down {
+    padding: 10px 0 25px;
+    max-width: 300px;
+    border-bottom: 1px solid #424242;
+  }
+  
+  .movies-card-down__name {
+    max-width: 275px;
+    min-height: 15px;
+    padding: 5px 0 0;
+    margin: 0;
+    color: #fff;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+   
+  .movies-card__duration {
+    font-size: 10px;
+    padding: 6px 0 0;
+  }
+}

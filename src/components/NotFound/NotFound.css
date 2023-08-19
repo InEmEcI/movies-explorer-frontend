@@ -27,6 +27,7 @@
 }
 
 .not-found__name {    
+    margin-top: 4px;
     color: #FFF;
     text-align: center;
 
@@ -36,7 +37,7 @@
 
 .not-found__link {    
     cursor: pointer;
-
+    margin-top: 168px;
     width: fit-content;
     align-self: center;
 

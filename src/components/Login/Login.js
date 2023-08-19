@@ -25,7 +25,7 @@ function Login() {
           name="email"
           // value={inputs.email}
           // onChange={handeleChange}
-          // placeholder="Email"
+          placeholder="Email"
           className="form__input-email"
         />
         <span className="form__top-span">Пароль</span>
@@ -36,7 +36,7 @@ function Login() {
           // value={inputs.password}
           // onChange={handeleChange}
           name="password"
-          // placeholder="Пароль"
+          placeholder="Пароль"
           className="form__input-pass"
         />
         {/* <span className='login__form-error-span'>Что-то пошло не так...</span> */}

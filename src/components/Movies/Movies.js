@@ -8,9 +8,7 @@ function Movies() {
         <main className="movies">
              {/* <Preloader /> */}
             <SearchForm />
-            <MoviesCardList />
-     
-                   
+            <MoviesCardList />          
         </main>
     );
 };

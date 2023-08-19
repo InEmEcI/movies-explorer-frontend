@@ -7,30 +7,27 @@ function Footer() {
         Учебный проект Яндекс.Практикум х BeatFilm.
       </p>
 
-
       <div className="footer__down">
-        <p className="footer__down-year">&copy; 2020</p>
-
-        <div className="footer__down-menu">
+        <p className="footer__down-year">&copy; 2023</p>
+        <nav className="footer__down-menu">
           <a
-            href="https://practicum.yandex.ru/catalog/"
             className="footer__link-yp"
+            href="https://practicum.yandex.ru/catalog/"
             target="_blank"
             rel="noopener noreferrer"
           >
             Яндекс.Практикум
           </a>
           <a
-            href="https://github.com/InEmEcI"
             className="footer__link-git"
+            href="https://github.com/InEmEcI"
             target="_blank"
             rel="noopener noreferrer"
           >
             Github
           </a>
-        </div>
+        </nav>
       </div>
-
     </footer>
   );
 }

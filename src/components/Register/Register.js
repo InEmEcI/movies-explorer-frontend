@@ -7,8 +7,7 @@ function Register() {
         <section className='register'>
       <Link to="/" className="register__logo">
         <img src={logo} alt="логотип" />
-      </Link>
-            
+      </Link>            
 
             <h3 className='register__hi'>Добро пожаловать!</h3>
 
@@ -18,12 +17,12 @@ function Register() {
                 <span className='register__form-top-span'>Имя</span>
                 <input
                     id="sing-up-name-input"
-                    type="name"
+                    type="string"
                     required
-                    name="email"
+                    name="name"
                     // value={inputs.email}
                     // onChange={handeleChange}
-                    // placeholder="Имя"
+                    placeholder="Имя"
                     className="register__input-name"
                 />
                 <span className='register__form-top-span'>E-mail</span>    
@@ -34,7 +33,7 @@ function Register() {
                     name="email"
                     // value={inputs.email}
                     // onChange={handeleChange}
-                    // placeholder="Email"
+                    placeholder="Email"
                     className="register__input-email"
                 />
                 <span className='register__form-top-span'>Пароль</span>    
@@ -45,7 +44,7 @@ function Register() {
                     // value={inputs.password}
                     // onChange={handeleChange}
                     name="password"
-                    // placeholder="Пароль"
+                    placeholder="Пароль"
                     className="register__input-pass"
                 />
                 <span className='register__form-error-span'>Что-то пошло не так...</span>

@@ -2,19 +2,6 @@
   display: none;
 }
 
-.burger__icon {
-  position: fixed;
-  top: 15px;
-  right: 30px;
-  margin: 0;
-  cursor: pointer;
-}
-
-.burger__icon:hover {
-  cursor: pointer;
-  opacity: .8;
-}
-
 /* ------------------------------------ */
 
 @media screen and (max-width: 768px) {
@@ -22,6 +9,16 @@
   .burger {
     display: block;
     color: #fff;
+  }
+
+  .burger__icon {
+    display: flex;
+    margin-top: 15px;
+  }
+  
+  .burger__icon:hover {
+    cursor: pointer;
+    opacity: .8;
   }
 
   .burger__menu {
@@ -139,9 +136,9 @@
 
   .burger__icon {
     width: 35px;
-    height: 41px;
-    top: 17px;
-    right: 16px;
+    height: 40px;
+    margin-right: 2px;
+    margin-top: 17px;    
   }
 }
 

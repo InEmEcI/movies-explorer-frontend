@@ -5,25 +5,31 @@
   flex-direction: column;
 }
 
-.aboutMe__studen {
-  margin-bottom: 66px;
-  margin-top: 113px;
-  padding-bottom: 23px;
+.aboutMe__student {
+  margin: 110px 0 0;
+  padding: 0 0 23px;
   border-bottom: 1px solid #DADADA;
-
   font-size: 22px;
   letter-spacing: -0.88px;  
+}
+
+.aboutMe__text-avatar {
+  display: flex;
+  gap: 270px;
+  padding: 66px 0 0;
+  margin: 0;
 }
 
 .aboutMe__text {
   display: flex;
   flex-direction: column;
   margin: 0;
+  padding: 0;
 }
 
 .aboutMe__name {
   margin: 0;
-  
+  padding: 0;
   font-size: 50px;  
   line-height: 58px;
   font-weight: 400;
@@ -32,24 +38,26 @@
 
 .aboutMe__job {
   margin: 18px 0 0 0;
-  
+  padding: 0;
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;
 }
 
-.aboutMe__text-avatar {
-  display: flex;
-  gap: 270px;
-}
-
-.aboutMe__biografiya {
+.aboutMe__biography {
   margin: 26px 0 0 0;
+  padding: 0;
   width: 599px;
-
   font-feature-settings: 'clig' off, 'liga' off;
   font-size: 14px;
   line-height: 22px;
+}
+
+.aboutMe__git {
+  margin: 99px 0 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .aboutMe__avatar {
@@ -58,130 +66,106 @@
   border-radius: 10px;
 }
 
-.aboutMe__git {
-  margin-top: 99px;
-
-  font-size: 14px;
-  font-weight: 500;
-}
-
-
 /* ----------------------------------------------- */
 
 @media screen and (max-width: 1279px) {
-
-  .aboutMe {    
+  .aboutMe {
     max-width: 668px;
   }
-
-  .aboutMe__studen {
-    margin-bottom: 66px;
-    margin-top: 94px;
-    padding-bottom: 23px;
-
-    font-size: 18px;
-    letter-spacing: 1.72px
+  
+  .aboutMe__student {
+    margin: 88px 0 0;
+    padding: 0 0 23px;
+    border-bottom: 1px solid #DADADA;
+    font-size: 22px;
+    letter-spacing: -0.88px;  
   }
   
-  .aboutMe__name {
-    font-size: 40px;
-    line-height: 40px;    
-    letter-spacing: -1.6px
+  .aboutMe__text-avatar {
+    gap: 49px;
   }
-
+    
+  .aboutMe__name {
+    font-size: 40px;  
+    line-height: 40px;
+    letter-spacing: -1.6px;
+  }
+  
   .aboutMe__job {
-    margin: 16px 0 0 0;    
-
+    margin: 16px 0 0 0;
     font-size: 12px;
     font-weight: 500;
     line-height: 18px;
   }
-
-  .aboutMe__text-avatar {    
-    gap: 49px;
-  }
-
-  .aboutMe__biografiya {
-    max-width: 363px;    
+  
+  .aboutMe__biography {
     margin: 20px 0 0 0;
-
-    font-feature-settings: 'clig' off, 'liga' off;
+    width: 364px;
     font-size: 12px;
     line-height: 18px;
   }
-
-  .aboutMe__avatar {    
-    width: 255px;
-    height: 307px;
-  }
-
+  
   .aboutMe__git {
-    margin: 87px 0 0 0;
-
+    margin: 87px 0 0;
     font-size: 14px;
     font-weight: 500;
   }
-
-  .aboutMe__sites {
-    margin-top: 50px;
-    margin-bottom: 0;
-    padding: 0;
+  
+  .aboutMe__avatar {
+    width: 255px;
+    height: 307px;
+    border-radius: 10px;
   }
-
 }
 
 @media screen and (max-width: 767px) {
-
-  .aboutMe {    
+  .aboutMe {
     max-width: 292px;
   }
-
-  .aboutMe__studen {
-    margin-top: 69px;
-    margin-bottom: 60px;
-    padding-bottom: 28px;
+  
+  .aboutMe__student {
+    margin: 70px 0 0;
+    padding: 0 0 28px;
     border-bottom: 1px solid #DADADA;
-
     font-size: 18px;
-    letter-spacing: -0.72px;
+    letter-spacing: -0.72px;  
   }
-
-  .aboutMe__name {
-    font-size: 30px;
-    letter-spacing: -1.2px;
-  }
-
-  .aboutMe__job {    
-    margin: 13px 0 0 0;
-
-    font-size: 11px;
-    font-weight: 500;
-    line-height: 16px;
-  }
-
+  
   .aboutMe__text-avatar {
     flex-direction: column-reverse;
     gap: 40px;
+    padding: 60px 0 0;
   }
-
-  .aboutMe__biografiya {
-    margin: 20px 0 0 0;
-    max-width: 292px;    
     
+  .aboutMe__name {
+    font-size: 30px;  
+    line-height: normal;
+    letter-spacing: -1.2px;
+  }
+  
+  .aboutMe__job {
+    margin: 20px 0 0 0;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+  
+  .aboutMe__biography {
+    margin: 20px 0 0 0;
+    width: 292px;
     font-size: 11px;
     line-height: 16px;
   }
-
-  .aboutMe__avatar {    
-    width: 292px;
-    height: 352px;
-  }
-
+  
   .aboutMe__git {
-    margin-top: 40px;
-
+    margin: 40px 0 0;
     font-size: 14px;
     font-weight: 500;
   }
-
+  
+  .aboutMe__avatar {
+    width: 292px;
+    height: 352px;
+    border-radius: 10px;
+  }
 }

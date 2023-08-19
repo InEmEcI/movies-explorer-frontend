@@ -38,12 +38,12 @@ function Header({ isLoggeIn }) {
         <div className="header__menu-in">
           <ul className="header__menu-components">
             <li>
-              <Link to="/movies" className="header__menu-btn_film">
+              <Link to="/movies" className="header__menu-btn">
                 Фильмы
               </Link>
             </li>
             <li>
-              <Link to="/saved-movies" className="header__menu-btn_film">
+              <Link to="/saved-movies" className="header__menu-btn">
                 Сохранённые фильмы
               </Link>
             </li>
