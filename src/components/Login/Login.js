@@ -1,10 +1,39 @@
+import "./Login.css";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
-import "./Login.css";
+import { signIn } from "../../utils/MainApi";
+import { getCookie, setCookie } from "../../utils/cookie";
 // import Header from "./Header";
 // import LogReg from "./LogReg";
+import useFormValidatorHook from "../../hooks/useFormValidationHook";
+import Input from "../Input/Input";
+import { useNavigate } from "react-router-dom";
+import Button from "../Button/Button";
+import { cookieExpiredTime } from "../../utils/constants";
 
-function Login() {
+function Login({location}) {
+  const { inputValues, handleChange, inputErrors, isFormValid } =
+    useFormValidatorHook();
+  const token = getCookie("token");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (token) {
+      navigate(location.state?.from?.pathname || '/movies', { replace: true });
+    }
+  }, [token]);
+  const submit = (e) => {
+    e.preventDefault();
+    signIn({ email: inputValues.email, password: inputValues.password })
+      .then((res) => {
+        if (res) {
+          setCookie("token", res.token, cookieExpiredTime);
+          navigate("/");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <section className="login">
       <Link to="/" className="logo">
@@ -13,38 +42,31 @@ function Login() {
 
       <h3 className="hi">Рады видеть!</h3>
 
-      <form
-        className="form"
-        // onSubmit={handleSubmit}
-      >
-        <span className="form__top-span">E-mail</span>
-        <input
-          id="sing-in-email-input"
+      <form className="form" onSubmit={(e) => submit(e)} noValidate>
+        <Input
+          inputTitle="E-mail"
           type="email"
-          required
+          isRequired={true}
           name="email"
-          // value={inputs.email}
-          // onChange={handeleChange}
-          placeholder="Email"
-          className="form__input-email"
+          value={inputValues.email}
+          onChange={handleChange}
+          placeholder="pochta@yandex.ru"
+          validationContent={inputErrors?.email}
         />
-        <span className="form__top-span">Пароль</span>
-        <input
-          id="sing-in-password-input"
-          type="password"
-          required
-          // value={inputs.password}
-          // onChange={handeleChange}
-          name="password"
-          placeholder="Пароль"
-          className="form__input-pass"
-        />
-        {/* <span className='login__form-error-span'>Что-то пошло не так...</span> */}
 
-        <button className="login__enter" type="submit">
-          {/* {buttonText} */}
-          Войти
-        </button>
+        <Input
+          inputTitle="Пароль"
+          type="password"
+          isRequired={true}
+          name="password"
+          value={inputValues.password}
+          onChange={handleChange}
+          placeholder="Пароль"
+          minLength={6}
+          validationContent={inputErrors?.password}
+        />
+
+        <Button content="Войти" type="submit" isDisabled={!isFormValid} />
       </form>
 
       <div className="login-down">

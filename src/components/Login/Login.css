@@ -8,21 +8,6 @@
   background-color: #202020;
 }
 
-input {
-  margin-bottom: 24px;
-  padding-bottom: 11px;
-  background-color: #202020;
-  border: none;
-  border-bottom: 1px solid #424242;
-  outline: none;
-  color: #fff;
-  font-size: 14px;
-}
-
-input:focus {
-  border-color: #4285f4;
-}
-
 .logo {
   margin-top: 17px;
   width: 38px;
@@ -30,71 +15,37 @@ input:focus {
 }
 
 .hi {
-  margin-top: 37px;
-  margin-bottom: 40px;
+  margin: 40px 0;
   font-size: 24px;
   font-weight: 500;
-  color: white;
+  color: #fff;
 }
 
 .form {
-  width: 396px;
+  height: 380px;
+  max-width: 396px;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 24px;
   margin: 0 auto;
 }
 
-.form__top-span {
-  margin-bottom: 5px;
-  color: #8b8b8b;
-  font-size: 10px;
-}
-
-.login__form-error-span {
-  color: #ee3465;
-  font-size: 10px;
-}
-
-.form__input-pass {
-  margin-bottom: 6px;
-  font-size: 14px;
-  background-color: #202020;
-}
-
-.login__enter {
-  width: 396px;
-  min-height: 45px;
-  margin-top: 216px;
-  margin-bottom: 14px;
-  border-radius: 3px;
-  border: none;
-  background: #4285f4;
-  color: #fff;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.login__enter:hover {
-  cursor: pointer;
-  opacity: 0.8;
-}
-
 .login-down {
-  margin: 3px 0 0 6px;
+  margin: 16px 0 0;
   display: flex;
   justify-content: center;
+  gap: 6px;
   font-size: 14px;
 }
 
 .login-down__left {
   color: #8b8b8b;
-  margin-top: 0;
+  margin: 0;
 }
 
 .login-down__rigth {
   color: #4285f4;
-  margin-left: 6px;
   cursor: pointer;
 }
 
@@ -112,7 +63,6 @@ input:focus {
   }
 
   input {
-    margin-bottom: 24px;
     padding-bottom: 11px;
     font-size: 14px;
   }
@@ -122,8 +72,7 @@ input:focus {
   }
 
   .hi {
-    margin-top: 37px;
-    margin-bottom: 40px;
+    margin: 40px 0;
     font-size: 24px;
     font-weight: 500;
   }
@@ -154,7 +103,7 @@ input:focus {
   }
 
   .hi {
-    margin: 50px auto;
+    margin: 40px 0;
     font-size: 24px;
     font-weight: 500;
   }
@@ -170,7 +119,7 @@ input:focus {
   }
 
   .login-down {
-    margin: 15px 0 0 0;
+    margin: 14px auto 0;
     font-size: 12px;
   }
 }

@@ -13,79 +13,36 @@
 }
 
 .register__hi {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin: 40px 0;
   font-size: 24px;
   font-weight: 500;
+  color: #fff;
 }
 
 .register__form {
-  width: 396px;
+  max-width: 396px;
+  height: 380px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.register__form-top-span {
-  text-align: left;
-  margin-bottom: 4px;
-  color: #8b8b8b;
-  font-size: 10px;
-}
-
-input {
-  max-width: 396px;
-  margin-bottom: 24px;
-  padding-bottom: 9px;
-  padding-left: 0;
-  border-bottom: 1px solid #424242;
-  outline: none;
-  color: white;
-  font-size: 14px;
-}
-
-.register__input-email {
-  padding-bottom: 8px;
-}
-
-.register__form-error-span {
-  color: #ee3465;
-  font-size: 10px;
-}
-
-.register__input-pass {
-  margin-bottom: 6px;
-  font-size: 14px;
-}
-
-.register-btn {
-  width: 396px;
-  min-height: 45px;
-  margin-top: 135px;
-  border-radius: 3px;
-  border: none;
-  background: #4285f4;
-  color: #fff;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 500;
+  gap: 24px;
 }
 
 .register-down {
-  width: 396px;
-  margin-top: 3px;
+  margin: 16px 0 0;
   display: flex;
   justify-content: center;
+  gap: 6px;
   font-size: 14px;
 }
 
 .register-down__left {
   color: #8b8b8b;
+  margin: 0;
 }
 
 .register-down__rigth {
   color: #4285f4;
-  margin-left: 6px;
-  margin-top: 15px;
 }
 
 .register-down__rigth:link {
@@ -119,20 +76,9 @@ input {
     width: 396px;
     margin: 0 auto;
   }
-
-  input {
-    width: 394px;
-    margin-bottom: 24px;
-    padding-bottom: 11px;
-    font-size: 14px;
-  }
 }
 
 @media screen and (max-width: 767px) {
-  input {
-    width: 260px;
-  }
-
   .register {
     padding: 18px 30px 30px 30px;
     min-height: 780px;
@@ -144,30 +90,18 @@ input {
   }
 
   .register__hi {
-    margin: 51px auto 0 auto;
+    margin: 50px 0 80px;
+    text-align: center;
     font-size: 24px;
     font-weight: 500;
   }
 
   .register__form {
     width: 260px;
-    margin: 80px auto 0 auto;
-  }
-
-  .register-btn {
-    width: 260px;
-    margin: 222px 0 auto 0;
-    font-size: 12px;
-    font-weight: 500;
   }
 
   .register-down {
-    width: 260px;
-    margin: 0 auto;
+    margin: 14px auto 0;
     font-size: 12px;
-  }
-
-  .register-down__rigth {
-    margin-top: 12px;
   }
 }

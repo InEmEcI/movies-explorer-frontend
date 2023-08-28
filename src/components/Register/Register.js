@@ -1,67 +1,98 @@
-import { Link } from 'react-router-dom';
-import logo from '../../images/logo.svg';
 import "./Register.css";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import logo from "../../images/logo.svg";
+import { signUp } from "../../utils/MainApi";
+import { getCookie } from "../../utils/cookie";
+import { useNavigate } from "react-router-dom";
+import "./Register.css";
+import useFormValidatorHook from "../../hooks/useFormValidationHook";
+import Input from "../Input/Input";
+import Button from "../Button/Button";
 
-function Register() {
-    return (
-        <section className='register'>
+function Register({location}) {
+  const { inputValues, isFormValid, handleChange, inputErrors } =
+    useFormValidatorHook();
+    const token = getCookie("token");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (token) {
+      navigate(location.state?.from?.pathname || '/movies', { replace: true });
+    }
+  }, [token]);
+  const submit = (e) => {
+    e.preventDefault();
+    signUp({
+      email: inputValues.email,
+      password: inputValues.password,
+      name: inputValues.name,
+    })
+    
+      .then((res) => {
+        if (res._id !== undefined) {
+          return navigate("/signin");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+  return (
+    <section className="register">
       <Link to="/" className="register__logo">
         <img src={logo} alt="логотип" />
-      </Link>            
+      </Link>
 
-            <h3 className='register__hi'>Добро пожаловать!</h3>
+      <h3 className="register__hi">Добро пожаловать!</h3>
 
-            <form className="register__form" 
-            // onSubmit={handleSubmit}
-            >
-                <span className='register__form-top-span'>Имя</span>
-                <input
-                    id="sing-up-name-input"
-                    type="string"
-                    required
-                    name="name"
-                    // value={inputs.email}
-                    // onChange={handeleChange}
-                    placeholder="Имя"
-                    className="register__input-name"
-                />
-                <span className='register__form-top-span'>E-mail</span>    
-                <input
-                    id="sing-up-email-input"
-                    type="email"
-                    required
-                    name="email"
-                    // value={inputs.email}
-                    // onChange={handeleChange}
-                    placeholder="Email"
-                    className="register__input-email"
-                />
-                <span className='register__form-top-span'>Пароль</span>    
-                <input
-                    id="sing-up-password-input"
-                    type="password"
-                    required
-                    // value={inputs.password}
-                    // onChange={handeleChange}
-                    name="password"
-                    placeholder="Пароль"
-                    className="register__input-pass"
-                />
-                <span className='register__form-error-span'>Что-то пошло не так...</span>
+      <form className="register__form" onSubmit={(e) => submit(e)} noValidate>
+        <Input
+          inputTitle="Имя"
+          type="text"
+          isRequired={true}
+          name="name"
+          value={inputValues.name}
+          onChange={handleChange}
+          placeholder="Виталий"
+          isValidate={true}
+          validationContent={inputErrors?.name}
+        />
 
-                <button className="register-btn" type="submit">                
-                    Зарегистрироваться
-                </button>
+        <Input
+          inputTitle="E-mail"
+          type="email"
+          isRequired={true}
+          name="email"
+          value={inputValues.email}
+          onChange={handleChange}
+          placeholder="pochta@yandex.ru"
+          validationContent={inputErrors?.email}
+        />
 
-            </form>
+        <Input
+          inputTitle="Пароль"
+          type="password"
+          isRequired={true}
+          name="password"
+          value={inputValues.password}
+          onChange={handleChange}
+          minLength={6}
+          placeholder="Пароль"
+          validationContent={inputErrors?.password}
+        />
+        <Button
+          content="Зарегистрироваться"
+          type="submit"
+          isDisabled={!isFormValid}
+        />
+      </form>
 
-            <div className='register-down'>
-                <p className='register-down__left'>Уже зарегистрированы?</p>                
-                <Link to="/signin" className="register-down__rigth">Войти</Link>
-            </div>
-
-        </section>
-    )
+      <div className="register-down">
+        <p className="register-down__left">Уже зарегистрированы?</p>
+        <Link to="/signin" className="register-down__rigth">
+          Войти
+        </Link>
+      </div>
+    </section>
+  );
 }
 
 export default Register;

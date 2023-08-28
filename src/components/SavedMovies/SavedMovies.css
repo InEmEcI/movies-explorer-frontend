@@ -1,24 +1,35 @@
+.movies {
+  padding: 70px;
+}
+
 .saved-movies {
-  max-width: 1140px;
-  display: flex;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 270px));
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  display: grid;
   column-gap: 20px;
   row-gap: 38px;
-  margin: 70px auto 240px;
 }
 
 @media screen and (max-width: 1279px) {
   .saved-movies {
-    max-width: 708px;
+    margin: 0 auto;
     gap: 30px;
-    margin: 70px auto 152px;
   }
 }
 
 @media screen and (max-width: 767px) {
+  .movies {
+    padding: 0 30px;
+  }
   .saved-movies {
-    max-width: 300px;
     gap: 34px;
-    margin: 40px auto 152px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .movies {
+    padding: 0 14px;
   }
 }

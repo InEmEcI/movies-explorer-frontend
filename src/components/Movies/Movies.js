@@ -1,16 +1,128 @@
-import React from "react";
+import "./Movies.css";
 
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import useMediaQuery from "../../hooks/useMediaQuery";
+import { useEffect, useMemo, useState } from "react";
+import { filterMovies, getShortMovies } from "../../utils/filters";
+import { getAllMovies } from "../../utils/MoviesApi";
+import useFormValidatorHook from "../../hooks/useFormValidationHook";
 
-function Movies() {
-    return (
-        <main className="movies">
-             {/* <Preloader /> */}
-            <SearchForm />
-            <MoviesCardList />          
-        </main>
+function Movies({ savedMovies }) {
+  const { inputValues, handleChange } = useFormValidatorHook();
+  const [allMovies, setAllMovies] = useState([]);
+  const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
+  const [cardsIndex, setCardsIndex] = useState({
+    startIndex: 0,
+    endIndex: 0,
+  });
+
+  const [cardsForRender, setCardsForRender] = useState([]);
+
+  const setInitialArray = (firstIndex, lastIndex, defaultArray) => {
+    const initialCardsArray =
+      defaultArray?.length > lastIndex
+        ? defaultArray.slice(firstIndex, lastIndex)
+        : defaultArray;
+    setCardsForRender(initialCardsArray);
+  };
+
+  const [filteredArray, setFilteredArray] = useState({
+    default: [],
+    shortMovies: [],
+  });
+
+  const cardsNumber = useMediaQuery();
+
+  useEffect(() => {
+    getAllMovies()
+      .then((res) => setAllMovies(res))
+      .catch((err) => console.error(err));
+  }, []);
+
+  const searchFilmSubmit = (e) => {
+    e.preventDefault();
+
+    const filteredMovies = filterMovies(inputValues.search, allMovies);
+    const shortMovies = getShortMovies(filteredMovies);
+
+    setFilteredArray((prevState) => {
+      return {
+        ...prevState,
+        default: filteredMovies,
+        shortMovies: shortMovies,
+      };
+    });
+
+    setInitialArray(
+      cardsIndex.startIndex,
+      cardsIndex.endIndex,
+      isCheckboxClicked ? shortMovies : filteredMovies
     );
-};
+  };
+
+  // устанавливаем дефолтный индекс для карточек
+  useEffect(() => {
+    setCardsIndex((prevState) => {
+      return {
+        ...prevState,
+        endIndex: cardsNumber.default,
+      };
+    });
+  }, [cardsNumber.default]);
+
+  useEffect(() => {
+    setInitialArray(
+      cardsIndex.startIndex,
+      cardsIndex.endIndex,
+      isCheckboxClicked ? filteredArray.shortMovies : filteredArray.default
+    );
+  }, [isCheckboxClicked]);
+
+  const updateCardsAmount = () => {
+    setCardsIndex((prevState) => {
+      return {
+        ...prevState,
+        startIndex: prevState.endIndex,
+        endIndex: prevState.endIndex + cardsNumber.additional,
+      };
+    });
+  };
+
+  const updateArray = (firstIndex, lastIndex) => {
+    const additionalCards = [...allMovies.slice(firstIndex, lastIndex)];
+    setCardsForRender(cardsForRender.concat(additionalCards));
+  };
+
+  useEffect(() => {
+    updateArray(cardsIndex.startIndex, cardsIndex.endIndex);
+  }, [cardsIndex.startIndex]);
+
+  return (
+    <main className="movies">
+      {/* <Preloader /> */}
+      <SearchForm
+        setCheckboxState={() => {
+          setIsCheckboxClicked(!isCheckboxClicked);
+        }}
+        onSubmit={searchFilmSubmit}
+        inputValues={inputValues}
+        handleChange={handleChange}
+      />
+      {cardsForRender?.length > 0 && (
+        <MoviesCardList
+          savedMovies={savedMovies}
+          cardsForRender={cardsForRender}
+          updateCardsAmount={updateCardsAmount}
+          defaultCardsArray={
+            isCheckboxClicked
+              ? filteredArray.shortMovies
+              : filteredArray.default
+          }
+        />
+      )}
+    </main>
+  );
+}
 
 export default Movies;

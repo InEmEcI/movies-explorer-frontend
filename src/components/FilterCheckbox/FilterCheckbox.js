@@ -1,7 +1,7 @@
 import "./FilterCheckbox.css";
 import search_line from "../../images/search_line.svg";
 
-function FilterCheckbox() {
+function FilterCheckbox({ checkboxRef, setCheckboxState }) {
   return (
     <section className="checkbox">
       <div className="checkbox__img">
@@ -10,10 +10,14 @@ function FilterCheckbox() {
           className="checkbox__image"
           alt="вертикальная линия"
         />
-  
-        <label class="checkbox__lablel">
-          <input type="checkbox"></input>
-          <span class="checkbox__span checkbox__span_round"></span>
+
+        <label className="checkbox__lablel">
+          <input
+            type="checkbox"
+            ref={checkboxRef}
+            onChange={setCheckboxState}
+          ></input>
+          <span className="checkbox__span checkbox__span_round"></span>
         </label>
         <p className="checkbox__txt">Короткометражки</p>
       </div>
