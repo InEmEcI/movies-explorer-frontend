@@ -61,7 +61,7 @@ function Login({location}) {
           name="password"
           value={inputValues.password}
           onChange={handleChange}
-          placeholder="Пароль"
+          // placeholder="Пароль"
           minLength={6}
           validationContent={inputErrors?.password}
         />
