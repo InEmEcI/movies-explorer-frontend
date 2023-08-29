@@ -1,3 +1,4 @@
+
 # movies-explorer-frontend
 
 Репозиторий для дипломного проекта `Веб-разработчик`, включающий бэкенд часть приложения со следующими возможностями: 
@@ -7,5 +8,12 @@
 
 Макет Dark-1
 
-Backend https://api.nemec.nomoredomains.xyz/
+Ссылка на пул реквест, открытый из ветки level-3 в main:
+https://github.com/InEmEcI/movies-explorer-frontend/pull/2
 
+Ссылка на задеплоенный на сервере проект:
+https://nemec.nomoredomains.xyz
+
+backend https://api.nemec.nomoredomains.xyz/
+
+frontend https://nemec.nomoredomains.xyz
