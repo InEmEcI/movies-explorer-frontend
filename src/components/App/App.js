@@ -17,7 +17,7 @@ import { ProtectedRoute } from "../../services/ProtectedRoute/ProtectedRoute";
 import { getAuthUserInfo, getSavedMovies } from "../../utils/MainApi";
 
 function App() {
-  
+  const [isLoading, setLoading] = useState(false);
   const { state, setState } = useContext(CurrentUserContext);
   const token = getCookie("token");
   const location = useLocation();
@@ -28,9 +28,18 @@ function App() {
 
   useEffect(() => {
     if (token) {
+      setLoading(true);
       getSavedMovies()
-      .then((res) => setSavedMovies(res))
-      .catch((err) => console.error(err));
+        .then((res) =>
+          setState((prevState) => {
+            return {
+              ...prevState,
+              savedMovies: res,
+            };
+          })
+        )
+        .catch((err) => console.error(err))
+        .finally(() => setLoading(false));
       getAuthUserInfo()
         .then((res) => {
           const { name, email, _id } = res;
@@ -49,34 +58,22 @@ function App() {
         })
         .catch((err) => console.error(err));
     }
-    
   }, [token]);
-
-  const [savedMovies, setSavedMovies] = useState([]);
-  
-
 
   return state !== undefined ? (
     <div className="App">
       <div className="page">
         {shouldShowHeader && <Header isLoggeIn={state.isAuth} />}
         <Routes>
-          <Route path="/signup" element={<Register location={location}/>} />
-          <Route path="/signin" element={<Login location={location}/>} />
+          <Route path="/signup" element={<Register location={location} />} />
+          <Route path="/signin" element={<Login location={location} />} />
           <Route path="*" element={<NotFound />} />
-          <Route
-            path="/"
-            element={
-              
-                <Main />
-              
-            }
-          />
+          <Route path="/" element={<Main />} />
           <Route
             path="/movies"
             element={
               <ProtectedRoute location={location} isAuth={state.isAuth}>
-                <Movies savedMovies={[...savedMovies]} />
+                <Movies isLoading={isLoading} />
               </ProtectedRoute>
             }
           />
@@ -84,7 +81,7 @@ function App() {
             path="/saved-movies"
             element={
               <ProtectedRoute location={location} isAuth={state.isAuth}>
-                <SavedMovies savedMovies={[...savedMovies]} />
+                <SavedMovies isLoading={isLoading} />
               </ProtectedRoute>
             }
           />

@@ -2,7 +2,6 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import { countMovieDuration, moviesUrl } from "../../utils/constants";
 
 function MoviesCardList({
-  savedMovies,
   defaultCardsArray,
   cardsForRender,
   updateCardsAmount,
@@ -15,10 +14,8 @@ function MoviesCardList({
           cardsForRender.map((card, index) => {
             const durationObj = countMovieDuration(card.duration);
             return (
-              // <Link key={card.id} to={card.trailerLink}>
               <MoviesCard
                 key={index}
-                savedMovies={savedMovies}
                 movieId={card.id}
                 nameRU={card.nameRU}
                 nameEN={card.nameEN}
@@ -34,7 +31,6 @@ function MoviesCardList({
                 hours={durationObj?.hours}
                 minutes={durationObj?.minutes}
               />
-              // </Link>
             );
           })}
       </ul>

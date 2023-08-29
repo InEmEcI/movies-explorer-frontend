@@ -7,8 +7,9 @@ import { useEffect, useMemo, useState } from "react";
 import { filterMovies, getShortMovies } from "../../utils/filters";
 import { getAllMovies } from "../../utils/MoviesApi";
 import useFormValidatorHook from "../../hooks/useFormValidationHook";
+import Preloader from '../Preloader/Preloader/Preloader';
 
-function Movies({ savedMovies }) {
+function Movies({isLoading, setLoading }) {
   const { inputValues, handleChange } = useFormValidatorHook();
   const [allMovies, setAllMovies] = useState([]);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
@@ -37,7 +38,7 @@ function Movies({ savedMovies }) {
   useEffect(() => {
     getAllMovies()
       .then((res) => setAllMovies(res))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
   }, []);
 
   const searchFilmSubmit = (e) => {
@@ -100,7 +101,6 @@ function Movies({ savedMovies }) {
 
   return (
     <main className="movies">
-      {/* <Preloader /> */}
       <SearchForm
         setCheckboxState={() => {
           setIsCheckboxClicked(!isCheckboxClicked);
@@ -108,19 +108,22 @@ function Movies({ savedMovies }) {
         onSubmit={searchFilmSubmit}
         inputValues={inputValues}
         handleChange={handleChange}
-      />
-      {cardsForRender?.length > 0 && (
-        <MoviesCardList
-          savedMovies={savedMovies}
-          cardsForRender={cardsForRender}
-          updateCardsAmount={updateCardsAmount}
-          defaultCardsArray={
-            isCheckboxClicked
-              ? filteredArray.shortMovies
-              : filteredArray.default
-          }
-        />
-      )}
+      />{
+        isLoading ?
+        <Preloader />
+        :
+        cardsForRender?.length > 0 && (
+          <MoviesCardList
+            cardsForRender={cardsForRender}
+            updateCardsAmount={updateCardsAmount}
+            defaultCardsArray={
+              isCheckboxClicked
+                ? filteredArray.shortMovies
+                : filteredArray.default
+            }
+          />
+        )
+      }
     </main>
   );
 }

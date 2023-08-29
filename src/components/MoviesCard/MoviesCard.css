@@ -11,6 +11,7 @@
   min-height: 151px;
   object-fit: cover;
   aspect-ratio: 16/9;
+  cursor: pointer;
 }
 
 .movies-card-down {
@@ -66,6 +67,10 @@
   margin: 0;
   padding: 0;
   background-color: transparent;
+}
+
+.movies-card-down__icon_active:hover {
+  background-image: url(../../images/deliteLike.svg);
 }
 
 .movies-card__duration {

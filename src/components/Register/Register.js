@@ -1,23 +1,25 @@
 import "./Register.css";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import logo from "../../images/logo.svg";
-import { signUp } from "../../utils/MainApi";
-import { getCookie } from "../../utils/cookie";
+import { signUp, signIn } from "../../utils/MainApi";
+import { getCookie, setCookie } from "../../utils/cookie";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import useFormValidatorHook from "../../hooks/useFormValidationHook";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
+import { cookieExpiredTime } from "../../utils/constants";
 
-function Register({location}) {
+function Register({ location }) {
+  const [error, setError] = useState({ isError: false, errorMesage: "" });
   const { inputValues, isFormValid, handleChange, inputErrors } =
     useFormValidatorHook();
-    const token = getCookie("token");
+  const token = getCookie("token");
   const navigate = useNavigate();
   useEffect(() => {
     if (token) {
-      navigate(location.state?.from?.pathname || '/movies', { replace: true });
+      navigate(location.state?.from?.pathname || "/movies", { replace: true });
     }
   }, [token]);
   const submit = (e) => {
@@ -27,13 +29,27 @@ function Register({location}) {
       password: inputValues.password,
       name: inputValues.name,
     })
-    
       .then((res) => {
+        setError({isError: false, errorMesage: ''})
         if (res._id !== undefined) {
-          return navigate("/signin");
+          signIn({ email: inputValues.email, password: inputValues.password })
+            .then((res) => {
+              if (res) {
+                setCookie("token", res.token, cookieExpiredTime);
+                navigate("/");
+              }
+            })
+            .catch((err) => console.error(err));
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) =>
+        err.status == 409
+          ? setError({
+              isError: true,
+              errorMesage: "такой пользователь уже существует",
+            })
+          : setError({ isError: true, errorMesage: "ошибка валидации" })
+      );
   };
   return (
     <section className="register">
@@ -51,7 +67,7 @@ function Register({location}) {
           name="name"
           value={inputValues.name}
           onChange={handleChange}
-          placeholder="Виталий"
+          placeholder="Имя"
           isValidate={true}
           validationContent={inputErrors?.name}
         />
@@ -83,6 +99,9 @@ function Register({location}) {
           type="submit"
           isDisabled={!isFormValid}
         />
+        {error.isError ? (
+          <span className="input__extraError">{error.errorMesage}</span>
+        ) : null}
       </form>
 
       <div className="register-down">

@@ -1,6 +1,12 @@
 import "./MoviesCard.css";
-import React, { useEffect, useState } from "react";
-import { createMovie, deleteMovieById } from "../../utils/MainApi";
+import React, { useContext, useEffect, useMemo, useState } from "react";
+import {
+  createMovie,
+  deleteMovieById,
+  getSavedMovies,
+} from "../../utils/MainApi";
+import { CurrentUserContext } from "../../services/CurrentUserContext/CurrentUserContext";
+import { Link } from "react-router-dom";
 
 function MoviesCard({
   nameRU,
@@ -17,23 +23,49 @@ function MoviesCard({
   hours,
   minutes,
   movieId,
-  savedMovies,
   _id,
 }) {
+  const { state, setState } = useContext(CurrentUserContext);
+  const { savedMovies } = state;
   const [isSaved, setSave] = useState(false);
+
   useEffect(() => {
     if (savedMovies.some((movie) => movie.movieId == movieId)) {
       setSave(true);
     }
   }, []);
 
+  const isCardExist = useMemo(() => {
+    return savedMovies.some((movie) => movie.movieId == movieId);
+  }, [movieId, [...savedMovies]]);
+
+  useEffect(() => {
+    getSavedMovies()
+      .then((res) =>
+        setState((prevState) => {
+          return {
+            ...prevState,
+            savedMovies: res,
+          };
+        })
+      )
+      .catch((err) => console.error(err));
+  }, [isSaved]);
+
   const toggleLike = () => {
-    if (savedMovies.some((movie) => movie.movieId == movieId)) {
+    if (isCardExist) {
       deleteMovieById(_id)
         .then((res) => {
           if (res) {
             setSave(false);
-            savedMovies.filter((movie) => movie.movieId !== movieId);
+            setState((prevState) => {
+              return {
+                ...prevState,
+                savedMovies: savedMovies.filter(
+                  (movie) => movie.movieId !== movieId
+                ),
+              };
+            });
           }
         })
         .catch((err) => console.error(err));
@@ -61,7 +93,9 @@ function MoviesCard({
   };
   return (
     <article className="movies-card">
-      <img className="movies-card__img" src={imageSrc} alt={imageAlt} />
+      <Link to={trailerLink}>
+        <img className="movies-card__img" src={imageSrc} alt={imageAlt} />
+      </Link>
       <div className="movies-card-down">
         <p className="movies-card-down__name">{nameRU}</p>
         <button
@@ -69,7 +103,7 @@ function MoviesCard({
           className={
             isSaved ? "movies-card-down__icon_active" : "movies-card-down__icon"
           }
-        ></button>
+        />
       </div>
       <p className="movies-card__duration">{`${hours}ч ${minutes}м`}</p>
     </article>

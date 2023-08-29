@@ -21,7 +21,6 @@ export default function Input({
         required={isRequired}
         name={name}
         defaultValue={value}
-        value={value}
         onChange={onChange}
         minLength={minLength}
         placeholder={placeholder}

@@ -13,8 +13,7 @@ function Main() {
     isAuth: false,
     userData: null,
     _id: null,
-    allCards: [],
-    searchQuery: "",
+    savedMovies: []
   });
   return (
     <React.StrictMode>

@@ -28,7 +28,7 @@ export default function useFormValidatorHook() {
       case "name":
         {
           if (target.validity.valueMissing) {
-            setErrorMessage(name, errorType.valueMissing);
+            setErrorMessage(name, errorType.valueMissing.default);
           }
           if (target.validity.typeMismatch) {
             setErrorMessage(name, errorType.typeMismatch.name);

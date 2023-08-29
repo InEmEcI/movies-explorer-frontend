@@ -18,8 +18,6 @@ function Profile() {
         isAuth: false,
         userData: null,
         _id: null,
-         searchQuery: "",
-        allCards: []
       };
     });
   };
@@ -82,7 +80,6 @@ function Profile() {
           <ProfileInput
             inputTitle="Имя"
             type="text"
-            defaultValue={inputValues?.name}
             value={inputValues?.name}
             onChange={handleChange}
             isRequired={true}
@@ -97,7 +94,6 @@ function Profile() {
             inputTitle="E-mail"
             type="email"
             name="email"
-            defaultValue={inputValues?.email}
             value={inputValues?.email}
             isRequired={true}
             onChange={handleChange}

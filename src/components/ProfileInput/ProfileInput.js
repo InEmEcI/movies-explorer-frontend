@@ -7,7 +7,6 @@ export default function ProfileInput({
   isRequired,
   type,
   value,
-  defaultValue,
   onChange,
   placeholder,
   minLength,
@@ -21,8 +20,7 @@ export default function ProfileInput({
         type={type}
         required={isRequired}
         name={name}
-        defaultValue={defaultValue}
-        value={value}
+        defaultValue={value}
         onChange={onChange}
         minLength={minLength}
         placeholder={placeholder}

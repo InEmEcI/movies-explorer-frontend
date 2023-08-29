@@ -1,25 +1,25 @@
 import "./Login.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import { signIn } from "../../utils/MainApi";
 import { getCookie, setCookie } from "../../utils/cookie";
-// import Header from "./Header";
-// import LogReg from "./LogReg";
 import useFormValidatorHook from "../../hooks/useFormValidationHook";
 import Input from "../Input/Input";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import { cookieExpiredTime } from "../../utils/constants";
 
-function Login({location}) {
+function Login({ location }) {
+  const [error, setError] = useState({ isError: false, errorMesage: "" });
+
   const { inputValues, handleChange, inputErrors, isFormValid } =
     useFormValidatorHook();
   const token = getCookie("token");
   const navigate = useNavigate();
   useEffect(() => {
     if (token) {
-      navigate(location.state?.from?.pathname || '/movies', { replace: true });
+      navigate(location.state?.from?.pathname || "/movies", { replace: true });
     }
   }, [token]);
   const submit = (e) => {
@@ -27,11 +27,19 @@ function Login({location}) {
     signIn({ email: inputValues.email, password: inputValues.password })
       .then((res) => {
         if (res) {
+          setError({isError: false, errorMesage: ''})
           setCookie("token", res.token, cookieExpiredTime);
           navigate("/");
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) =>
+        err
+          ? setError({
+              isError: true,
+              errorMesage: "Неправильные почта или пароль",
+            })
+          : null
+      );
   };
 
   return (
@@ -50,7 +58,7 @@ function Login({location}) {
           name="email"
           value={inputValues.email}
           onChange={handleChange}
-          placeholder="pochta@yandex.ru"
+          placeholder="Email"
           validationContent={inputErrors?.email}
         />
 
@@ -65,6 +73,9 @@ function Login({location}) {
           minLength={6}
           validationContent={inputErrors?.password}
         />
+        {error.isError ? (
+          <span className="input__extraError">{error.errorMesage}</span>
+        ) : null}
 
         <Button content="Войти" type="submit" isDisabled={!isFormValid} />
       </form>
