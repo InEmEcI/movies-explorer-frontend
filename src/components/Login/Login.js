@@ -50,7 +50,7 @@ function Login({location}) {
           name="email"
           value={inputValues.email}
           onChange={handleChange}
-          placeholder="pochta@yandex.ru"
+          // placeholder="pochta@yandex.ru"
           validationContent={inputErrors?.email}
         />
 

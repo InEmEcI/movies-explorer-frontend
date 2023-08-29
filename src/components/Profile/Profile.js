@@ -88,7 +88,7 @@ function Profile() {
             isRequired={true}
             name="name"
             validationContent={inputErrors.name}
-            placeholder="Имя"
+            // placeholder="Имя"
           />
 
           <div className="profile__form-line" />
@@ -102,7 +102,7 @@ function Profile() {
             isRequired={true}
             onChange={handleChange}
             validationContent={inputErrors.email}
-            placeholder="pochta@yandex.ru"
+            // placeholder="pochta@yandex.ru"
           />
 
           <button

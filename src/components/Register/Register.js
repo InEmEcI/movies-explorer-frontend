@@ -51,7 +51,7 @@ function Register({location}) {
           name="name"
           value={inputValues.name}
           onChange={handleChange}
-          placeholder="Виталий"
+          // placeholder="Виталий"
           isValidate={true}
           validationContent={inputErrors?.name}
         />
@@ -63,7 +63,7 @@ function Register({location}) {
           name="email"
           value={inputValues.email}
           onChange={handleChange}
-          placeholder="pochta@yandex.ru"
+          // placeholder="pochta@yandex.ru"
           validationContent={inputErrors?.email}
         />
 
@@ -75,7 +75,7 @@ function Register({location}) {
           value={inputValues.password}
           onChange={handleChange}
           minLength={6}
-          placeholder="Пароль"
+          // placeholder="Пароль"
           validationContent={inputErrors?.password}
         />
         <Button
