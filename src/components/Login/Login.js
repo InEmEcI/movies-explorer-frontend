@@ -50,7 +50,7 @@ function Login({location}) {
           name="email"
           value={inputValues.email}
           onChange={handleChange}
-          // placeholder="pochta@yandex.ru"
+          placeholder="pochta@yandex.ru"
           validationContent={inputErrors?.email}
         />
 
@@ -61,7 +61,7 @@ function Login({location}) {
           name="password"
           value={inputValues.password}
           onChange={handleChange}
-          // placeholder="Пароль"
+          placeholder="Пароль"
           minLength={6}
           validationContent={inputErrors?.password}
         />
