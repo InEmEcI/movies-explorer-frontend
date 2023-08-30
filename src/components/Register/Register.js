@@ -79,7 +79,7 @@ function Register({ location }) {
           name="email"
           value={inputValues.email}
           onChange={handleChange}
-          placeholder="pochta@yandex.ru"
+          placeholder="email"
           validationContent={inputErrors?.email}
         />
 
@@ -94,14 +94,14 @@ function Register({ location }) {
           placeholder="Пароль"
           validationContent={inputErrors?.password}
         />
+         {error.isError ? (
+          <span className="input__extraError">{error.errorMesage}</span>
+        ) : null}
         <Button
           content="Зарегистрироваться"
           type="submit"
           isDisabled={!isFormValid}
         />
-        {error.isError ? (
-          <span className="input__extraError">{error.errorMesage}</span>
-        ) : null}
       </form>
 
       <div className="register-down">

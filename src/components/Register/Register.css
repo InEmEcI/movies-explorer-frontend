@@ -13,8 +13,6 @@
 }
 
 .input__extraError {
-  position: absolute;
-  bottom: 603px;
   font: 400 10px / normal Inter;
   color: #ee3465;
 }

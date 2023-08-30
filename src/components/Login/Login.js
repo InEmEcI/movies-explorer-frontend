@@ -58,7 +58,7 @@ function Login({ location }) {
           name="email"
           value={inputValues.email}
           onChange={handleChange}
-          placeholder="pochta@yandex.ru"
+          placeholder="email"
           validationContent={inputErrors?.email}
         />
 
