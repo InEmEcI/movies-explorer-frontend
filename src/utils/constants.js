@@ -1,4 +1,4 @@
-export const baseUrl = "https://nemec.nomoredomains.xyz";
+export const baseUrl = "http://api.nemec.nomoredomains.xyz";
 export const moviesUrl = "https://api.nomoreparties.co";
 
 export const checkResponse = (res) => {
