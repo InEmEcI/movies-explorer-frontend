@@ -21,7 +21,6 @@ function SavedMovies({ isLoading, setIsCheckboxClicked, isCheckboxClicked }) {
     default: [],
     shortMovies: [],
   });
-  console.log(filteredSaveArray)
   useEffect(() => {
     setFilteredSaveArray((prevState) => {
       return {

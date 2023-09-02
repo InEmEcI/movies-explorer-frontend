@@ -35,7 +35,6 @@ function Movies({ isLoading, isCheckboxClicked, setIsCheckboxClicked, allMovies 
   });
 
   const cardsNumber = useMediaQuery();
-
   const [isSearchLoading, setIsSearchLoading] = useState(false);
 
   useEffect(() => {
@@ -112,7 +111,7 @@ function Movies({ isLoading, isCheckboxClicked, setIsCheckboxClicked, allMovies 
       cardsIndex.endIndex,
       isCheckboxClicked ? filteredArray.shortMovies : filteredArray.default
     );
-  }, [isCheckboxClicked]);
+  }, [isCheckboxClicked, filteredArray]);
 
   const updateCardsAmount = () => {
     setCardsIndex((prevState) => {
