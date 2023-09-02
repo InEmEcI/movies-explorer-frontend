@@ -9,9 +9,12 @@ import { getAllMovies } from "../../utils/MoviesApi";
 import useFormValidatorHook from "../../hooks/useFormValidationHook";
 import Preloader from "../Preloader/Preloader/Preloader";
 
-function Movies({ isLoading, isCheckboxClicked, setIsCheckboxClicked, allMovies }) {
-
-  
+function Movies({
+  isLoading,
+  isCheckboxClicked,
+  setIsCheckboxClicked,
+  allMovies,
+}) {
   const { inputValues, handleChange } = useFormValidatorHook();
   const [isArrayEmpty, setIsArrayEmpty] = useState(false);
   const [cardsIndex, setCardsIndex] = useState({
@@ -26,7 +29,7 @@ function Movies({ isLoading, isCheckboxClicked, setIsCheckboxClicked, allMovies 
       defaultArray?.length > lastIndex
         ? defaultArray.slice(firstIndex, lastIndex)
         : defaultArray;
-    setCardsForRender(initialCardsArray);
+    setCardsForRender((prevState) => initialCardsArray);
   };
 
   const [filteredArray, setFilteredArray] = useState({
@@ -38,8 +41,7 @@ function Movies({ isLoading, isCheckboxClicked, setIsCheckboxClicked, allMovies 
   const [isSearchLoading, setIsSearchLoading] = useState(false);
 
   useEffect(() => {
-
-    if (localStorage.getItem("formInput") !== null && allMovies.length !== 0) {
+    if (localStorage.getItem("formInput") !== null && allMovies.length) {
       setIsArrayEmpty(false);
       const filteredMovies = filterMovies(
         localStorage.getItem("formInput"),
@@ -47,9 +49,7 @@ function Movies({ isLoading, isCheckboxClicked, setIsCheckboxClicked, allMovies 
       );
       const shortMovies = getShortMovies(filteredMovies);
 
-      filteredMovies.length === 0
-        ? setIsArrayEmpty(true)
-        : setIsArrayEmpty(false);
+      filteredMovies.length ? setIsArrayEmpty(false) : setIsArrayEmpty(true);
 
       setFilteredArray((prevState) => {
         return {
@@ -65,7 +65,7 @@ function Movies({ isLoading, isCheckboxClicked, setIsCheckboxClicked, allMovies 
         isCheckboxClicked ? shortMovies : filteredMovies
       );
     }
-  }, [localStorage.getItem("formInput"), allMovies]);
+  }, [localStorage.getItem("formInput"), allMovies, cardsIndex.endIndex]);
 
   const searchFilmSubmit = (e) => {
     e.preventDefault();
@@ -111,7 +111,8 @@ function Movies({ isLoading, isCheckboxClicked, setIsCheckboxClicked, allMovies 
       cardsIndex.endIndex,
       isCheckboxClicked ? filteredArray.shortMovies : filteredArray.default
     );
-  }, [isCheckboxClicked, filteredArray]);
+  }, [isCheckboxClicked, cardsIndex.endIndex]);
+
 
   const updateCardsAmount = () => {
     setCardsIndex((prevState) => {
@@ -155,7 +156,7 @@ function Movies({ isLoading, isCheckboxClicked, setIsCheckboxClicked, allMovies 
       ) : (
         cardsForRender?.length > 0 && (
           <MoviesCardList
-            cardsForRender={cardsForRender}
+            cardsForRender={[...cardsForRender]}
             updateCardsAmount={updateCardsAmount}
             defaultCardsArray={
               isCheckboxClicked
