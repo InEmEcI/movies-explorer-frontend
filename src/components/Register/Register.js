@@ -13,6 +13,7 @@ import { cookieExpiredTime } from "../../utils/constants";
 
 function Register({ location }) {
   const [error, setError] = useState({ isError: false, errorMesage: "" });
+  const [isLoading, setIsLoading] = useState(false);
   const { inputValues, isFormValid, handleChange, inputErrors } =
     useFormValidatorHook();
   const token = getCookie("token");
@@ -30,16 +31,21 @@ function Register({ location }) {
       name: inputValues.name,
     })
       .then((res) => {
-        setError({isError: false, errorMesage: ''})
+        setError({ isError: false, errorMesage: "" });
+        setIsLoading(true);
         if (res._id !== undefined) {
           signIn({ email: inputValues.email, password: inputValues.password })
             .then((res) => {
               if (res) {
+                setIsLoading(false)
                 setCookie("token", res.token, cookieExpiredTime);
-                navigate("/");
+                navigate("/movies");
               }
             })
-            .catch((err) => console.error(err));
+            .catch((err) => {
+              console.error(err);
+              setIsLoading(false);
+            });
         }
       })
       .catch((err) =>
@@ -48,6 +54,12 @@ function Register({ location }) {
               isError: true,
               errorMesage: "такой пользователь уже существует",
             })
+            :
+            err.status == 404
+            ? setError({
+                isError: true,
+                errorMesage: "NOT FOUND",
+              })    
           : setError({ isError: true, errorMesage: "ошибка валидации" })
       );
   };
@@ -94,13 +106,13 @@ function Register({ location }) {
           placeholder="Пароль"
           validationContent={inputErrors?.password}
         />
-         {error.isError ? (
+        {error.isError ? (
           <span className="input__extraError">{error.errorMesage}</span>
         ) : null}
         <Button
           content="Зарегистрироваться"
           type="submit"
-          isDisabled={!isFormValid}
+          isDisabled={!isFormValid || isLoading}
         />
       </form>
 

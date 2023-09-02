@@ -13,7 +13,7 @@ export default function Input({
   validationContent,
 }) {
   return (
-    <label className="label" key={name}>
+    <label className="label" for={name}>
       <p className="input__title">{inputTitle}</p>
       <input
         className="input"

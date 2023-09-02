@@ -1,4 +1,5 @@
-export const baseUrl = "https://api.nemec.nomoredomains.xyz";
+export const baseUrl = "http://api.nemec.nomoredomains.xyz";
+// export const baseUrl = "http://localhost:3000";
 export const moviesUrl = "https://api.nomoreparties.co";
 
 export const checkResponse = (res) => {
@@ -35,5 +36,7 @@ export const countMovieDuration = (duration) => {
 
 export const inputPatterns = {
   name: "^([А-Яа-яA-Za-z\\-])+$",
-  // email: "^([a-zA-Z0-9_-.]+)@([a-zA-Z0-9_-.]+).([a-zA-Z]{2,5})+$",
+  email: undefined,
+  // email:
+  //   "/^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?.)*(?:aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])+$/",
 };

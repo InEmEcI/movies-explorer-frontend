@@ -14,6 +14,7 @@
   align-items: center;
   justify-content: end;
   margin: 0 auto;
+  position: relative;
 }
 
 .search__after-line {
@@ -81,9 +82,13 @@
   cursor: pointer;
 }
 
+.search__emptyArr {
+  position: absolute;
+  bottom: -26px;
+  left: 0;
+}
+
 @media screen and (max-width: 1279px) {
-  .search__line {
-  }
 
   .search__line-rigth-btn {
     margin-left: 20px;

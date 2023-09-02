@@ -1,7 +1,7 @@
 import "./FilterCheckbox.css";
 import search_line from "../../images/search_line.svg";
 
-function FilterCheckbox({ checkboxRef, setCheckboxState }) {
+function FilterCheckbox({ checkboxRef, setCheckboxState, isCheckboxClicked }) {
   return (
     <section className="checkbox">
       <div className="checkbox__img">
@@ -14,6 +14,7 @@ function FilterCheckbox({ checkboxRef, setCheckboxState }) {
         <label className="checkbox__lablel">
           <input
             type="checkbox"
+            checked={Boolean(isCheckboxClicked)}
             ref={checkboxRef}
             onChange={setCheckboxState}
           ></input>

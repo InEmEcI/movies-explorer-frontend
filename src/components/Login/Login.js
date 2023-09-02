@@ -11,8 +11,8 @@ import Button from "../Button/Button";
 import { cookieExpiredTime } from "../../utils/constants";
 
 function Login({ location }) {
-  const [error, setError] = useState({ isError: false, errorMesage: "" });
-
+  const [error, setError] = useState({ isError: false, errorMessage: "" });
+  const [isLoading, setIsLoading] = useState(false);
   const { inputValues, handleChange, inputErrors, isFormValid } =
     useFormValidatorHook();
   const token = getCookie("token");
@@ -24,22 +24,37 @@ function Login({ location }) {
   }, [token]);
   const submit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     signIn({ email: inputValues.email, password: inputValues.password })
       .then((res) => {
         if (res) {
-          setError({isError: false, errorMesage: ''})
+          setError({ isError: false, errorMessage: "" });
           setCookie("token", res.token, cookieExpiredTime);
-          navigate("/");
+          navigate("/movies");
+          setIsLoading(false);
         }
       })
-      .catch((err) =>
-        err
-          ? setError({
-              isError: true,
-              errorMesage: "Неправильные почта или пароль",
-            })
-          : null
-      );
+      .catch((err) => {
+        if(err.status == 404) {
+          setError({
+            isError: true,
+            errorMessage: "Проверьте подключение к интернету",
+          });
+        }
+        if(err.status == 400) {
+          setError({
+            isError: true,
+            errorMessage: "Неправильные почта или пароль",
+          });
+        }
+        if(err.status == 500) {
+          setError({
+            isError: true,
+            errorMessage: "INTERNAL SERVER ERROR",
+          });
+        }
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -74,10 +89,14 @@ function Login({ location }) {
           validationContent={inputErrors?.password}
         />
         {error.isError ? (
-          <span className="input__extraError">{error.errorMesage}</span>
+          <span className="input__extraError">{error.errorMessage}</span>
         ) : null}
 
-        <Button content="Войти" type="submit" isDisabled={!isFormValid} />
+        <Button
+          content="Войти"
+          type="submit"
+          isDisabled={!isFormValid || isLoading}
+        />
       </form>
 
       <div className="login-down">

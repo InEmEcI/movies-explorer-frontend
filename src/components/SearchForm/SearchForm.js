@@ -1,10 +1,18 @@
 import "./SearchForm.css";
 import search_icon from "../../images/search-icon.svg";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-import useFormValidatorHook from "../../hooks/useFormValidationHook";
 
-function SearchForm({ checkboxRef, setCheckboxState, onSubmit, inputValues, handleChange }) {
-
+function SearchForm({
+  checkboxRef,
+  setCheckboxState,
+  onSubmit,
+  inputValues,
+  handleChange,
+  isArrayEmpty,
+  defaultValue,
+  isCheckboxClicked, 
+  isLoading
+}) {
   return (
     <section className="search">
       <div className="search__line">
@@ -21,26 +29,30 @@ function SearchForm({ checkboxRef, setCheckboxState, onSubmit, inputValues, hand
             type="text"
             required
             onChange={handleChange}
-            value={inputValues.search}
+            defaultValue={defaultValue}
             placeholder="Фильм"
             name="search"
           />
+
           <button
             className="search__line-rigth-btn"
             alt="кнопка 'Найти' "
             type="sumbit"
-            disabled={!inputValues?.search?.length}
+            disabled={!inputValues?.search?.length || isLoading}
           >
             Найти
           </button>
+          {isArrayEmpty && (
+            <span className={"search__emptyArr"}>Ничего не найдено</span>
+          )}
         </form>
 
         <FilterCheckbox
+        isCheckboxClicked={isCheckboxClicked}
           checkboxRef={checkboxRef}
           setCheckboxState={setCheckboxState}
         />
       </div>
-
       <div className="search__after-line"></div>
     </section>
   );

@@ -6,16 +6,15 @@ function MoviesCardList({
   cardsForRender,
   updateCardsAmount,
 }) {
-
   return (
     <section className="movies-box">
       <ul className="movies-box__list">
         {[...cardsForRender]?.length > 0 &&
-          cardsForRender.map((card, index) => {
+          cardsForRender.map((card) => {
             const durationObj = countMovieDuration(card.duration);
             return (
               <MoviesCard
-                key={index}
+                key={card.id}
                 movieId={card.id}
                 nameRU={card.nameRU}
                 nameEN={card.nameEN}

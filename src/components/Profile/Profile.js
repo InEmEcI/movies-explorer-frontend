@@ -3,12 +3,15 @@ import { useContext, useEffect, useMemo } from "react";
 import { CurrentUserContext } from "../../services/CurrentUserContext/CurrentUserContext";
 import { deleteCookie } from "../../utils/cookie";
 import "../Header/Header.css";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ProfileInput from "../ProfileInput/ProfileInput";
 import useFormValidatorHook from "../../hooks/useFormValidationHook";
 import { updateUserData } from "../../utils/MainApi";
+import { useState } from "react";
 
 function Profile() {
+  const navigate = useNavigate();
   const exit = (e) => {
     e.preventDefault();
     deleteCookie("token");
@@ -20,9 +23,12 @@ function Profile() {
         _id: null,
       };
     });
+    navigate("/");
   };
 
   const { state, setState } = useContext(CurrentUserContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccessfullyUpdated, setIsSuccessfullyUpdated] = useState(false);
   const {
     inputValues,
     handleChange,
@@ -56,8 +62,10 @@ function Profile() {
 
   const submitUserDataUpdating = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     updateUserData({ name: inputValues?.name, email: inputValues?.email })
-      .then((res) =>
+      .then((res) => {
+        setIsLoading(false);
         setState((prevState) => {
           return {
             ...prevState,
@@ -66,9 +74,16 @@ function Profile() {
               email: res.email,
             },
           };
-        })
-      )
-      .catch((err) => console.error(err));
+        });
+      })
+      .then((res) => {
+        setIsSuccessfullyUpdated(true);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.error(err);
+        setIsSuccessfullyUpdated(false);
+      });
   };
 
   return (
@@ -101,10 +116,14 @@ function Profile() {
             placeholder="pochta@yandex.ru"
           />
 
+          {isSuccessfullyUpdated && (
+            <p className="profile__updated">Профиль успешно обновлен!</p>
+          )}
+
           <button
             className="profile__edit"
             type="submit"
-            disabled={isSubmitDisabled}
+            disabled={isSubmitDisabled || isLoading}
           >
             Редактировать
           </button>

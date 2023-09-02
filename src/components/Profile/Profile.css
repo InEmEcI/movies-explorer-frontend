@@ -26,6 +26,10 @@
   gap: 16px;
 }
 
+.profile__updated {
+  text-align: center;
+}
+
 .profile__form-line {
   height: 1px;
   background-color: #424242;

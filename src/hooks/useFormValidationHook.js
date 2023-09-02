@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { errorType } from "../utils/constants";
+import { validate } from "react-email-validator";
 
 export default function useFormValidatorHook() {
   const [inputValues, setInputValues] = useState({});
@@ -13,6 +14,7 @@ export default function useFormValidatorHook() {
   const handleChange = (event) => {
     const target = event.target;
     const { name, value } = target;
+    const form = target.closest("form");
 
     setInputValues((prevState) => {
       return { ...prevState, [name]: value };
@@ -22,7 +24,7 @@ export default function useFormValidatorHook() {
       return { ...prevState, [name]: target.validationMessage };
     });
 
-    setIsFormValid(target.closest("form").checkValidity());
+    setIsFormValid(form.checkValidity());
 
     switch (name) {
       case "name":
@@ -43,6 +45,12 @@ export default function useFormValidatorHook() {
           if (target.validity.typeMismatch) {
             setErrorMessage(name, errorType.typeMismatch.email);
           }
+          const input = form
+            .querySelector("label[for='email']")
+            .getElementsByTagName("input")[0];
+          if (!validate(inputValues.email)) {
+            input.setCustomValidity(errorType.typeMismatch.email);
+          } else input.setCustomValidity("");
         }
         break;
       case "password": {
@@ -59,6 +67,7 @@ export default function useFormValidatorHook() {
         }
         break;
     }
+
   };
 
   const resetForm = useCallback(

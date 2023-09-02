@@ -8,17 +8,20 @@ import useFormValidatorHook from "../../hooks/useFormValidationHook";
 import Preloader from "../Preloader/Preloader/Preloader";
 import { CurrentUserContext } from "../../services/CurrentUserContext/CurrentUserContext";
 
-function SavedMovies({ isLoading }) {
+function SavedMovies({ isLoading, setIsCheckboxClicked, isCheckboxClicked }) {
+  
   const { state, setState } = useContext(CurrentUserContext);
   const { savedMovies } = state;
+  const [isSearchLoading, setIsSearchLoading] = useState(false);
+
+  const [isArrayEmpty, setIsArrayEmpty] = useState(false);
 
   const { inputValues, handleChange } = useFormValidatorHook();
-  const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
   const [filteredSaveArray, setFilteredSaveArray] = useState({
     default: [],
     shortMovies: [],
   });
-
+  console.log(filteredSaveArray)
   useEffect(() => {
     setFilteredSaveArray((prevState) => {
       return {
@@ -27,11 +30,31 @@ function SavedMovies({ isLoading }) {
       };
     });
   }, [savedMovies]);
+
+  useEffect(() => {
+    if (isCheckboxClicked) {
+      const shortMovies = inputValues.search
+        ? getShortMovies(filterMovies(inputValues.search, savedMovies))
+        : getShortMovies(savedMovies);
+      setFilteredSaveArray((prevState) => {
+        return {
+          ...prevState,
+          shortMovies: shortMovies,
+        };
+      });
+    }
+  }, [isCheckboxClicked, savedMovies]);
+
   const searchFilmSubmit = (e) => {
     e.preventDefault();
+    setIsSearchLoading(true);
 
     const filteredMovies = filterMovies(inputValues.search, savedMovies);
     const shortMovies = getShortMovies(filteredMovies);
+
+    filteredMovies.length === 0
+      ? setIsArrayEmpty(true)
+      : setIsArrayEmpty(false);
 
     setFilteredSaveArray((prevState) => {
       return {
@@ -40,25 +63,27 @@ function SavedMovies({ isLoading }) {
         shortMovies: shortMovies,
       };
     });
+    setIsSearchLoading(false);
   };
 
   return (
     <main className="movies">
       <SearchForm
-        setCheckboxState={() => {
-          setIsCheckboxClicked(!isCheckboxClicked);
-        }}
+        isArrayEmpty={isArrayEmpty}
+        isCheckboxClicked={isCheckboxClicked}
+        setCheckboxState={setIsCheckboxClicked}
         onSubmit={searchFilmSubmit}
         inputValues={inputValues}
         handleChange={handleChange}
+        isLoading={isSearchLoading}
       />
       {isLoading ? (
         <Preloader />
       ) : (
         <div className="saved-movies">
-          {savedMovies.length != 0
+          {savedMovies.length > 0
             ? isCheckboxClicked
-              ? filteredSaveArray?.shortMovies.map((el) => {
+              ? [...filteredSaveArray?.shortMovies].map((el) => {
                   const durationObj = countMovieDuration(el.duration);
                   return (
                     <MoviesCard

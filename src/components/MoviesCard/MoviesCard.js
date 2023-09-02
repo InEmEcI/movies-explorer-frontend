@@ -23,7 +23,6 @@ function MoviesCard({
   hours,
   minutes,
   movieId,
-  _id,
 }) {
   const { state, setState } = useContext(CurrentUserContext);
   const { savedMovies } = state;
@@ -39,22 +38,9 @@ function MoviesCard({
     return savedMovies.some((movie) => movie.movieId == movieId);
   }, [movieId, [...savedMovies]]);
 
-  useEffect(() => {
-    getSavedMovies()
-      .then((res) =>
-        setState((prevState) => {
-          return {
-            ...prevState,
-            savedMovies: res,
-          };
-        })
-      )
-      .catch((err) => console.error(err));
-  }, [isSaved]);
-
   const toggleLike = () => {
     if (isCardExist) {
-      deleteMovieById(_id)
+      deleteMovieById(savedMovies.find((movie) => movie.movieId == movieId)._id)
         .then((res) => {
           if (res) {
             setSave(false);
@@ -86,6 +72,12 @@ function MoviesCard({
         .then((res) => {
           if (res) {
             setSave(true);
+            setState((prevState) => {
+              return {
+                ...prevState,
+                savedMovies: [...prevState.savedMovies, res]
+              };
+            });
           }
         })
         .catch((err) => console.error(err));
