@@ -1,3 +1,6 @@
+/* eslint-disable no-fallthrough */
+/* eslint-disable no-lone-blocks */
+/* eslint-disable default-case */
 import { useCallback, useState } from "react";
 import { errorType } from "../utils/constants";
 import { validate } from "react-email-validator";
@@ -50,7 +53,11 @@ export default function useFormValidatorHook() {
             .getElementsByTagName("input")[0];
           if (!validate(inputValues.email)) {
             input.setCustomValidity(errorType.typeMismatch.email);
-          } else input.setCustomValidity("");
+            setIsFormValid(false);
+            
+          } else 
+          input.setCustomValidity("");
+          setIsFormValid(true);
         }
         break;
       case "password": {
