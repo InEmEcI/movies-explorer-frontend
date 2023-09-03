@@ -37,7 +37,7 @@ function Register({ location }) {
           signIn({ email: inputValues.email, password: inputValues.password })
             .then((res) => {
               if (res) {
-                setIsLoading(false)
+                setIsLoading(false);
                 setCookie("token", res.token, cookieExpiredTime);
                 navigate("/movies");
               }
@@ -54,12 +54,11 @@ function Register({ location }) {
               isError: true,
               errorMesage: "такой пользователь уже существует",
             })
-            :
-            err.status == 404
-            ? setError({
-                isError: true,
-                errorMesage: "NOT FOUND",
-              })    
+          : err.status == 404
+          ? setError({
+              isError: true,
+              errorMesage: "NOT FOUND",
+            })
           : setError({ isError: true, errorMesage: "непредвиденная ошибка" })
       );
   };
@@ -82,6 +81,8 @@ function Register({ location }) {
           placeholder="Имя"
           isValidate={true}
           validationContent={inputErrors?.name}
+          minLength={2}
+          maxLength={32}
         />
 
         <Input

@@ -100,7 +100,9 @@ function Profile() {
             isRequired={true}
             name="name"
             validationContent={inputErrors.name}
-            placeholder="Имя"
+            placeholder="Имя"            
+            minLength={2}
+            maxLength={32}
           />
 
           <div className="profile__form-line" />

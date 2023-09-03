@@ -35,13 +35,7 @@ function Login({ location }) {
         }
       })
       .catch((err) => {
-        if(err.status == 404) {
-          setError({
-            isError: true,
-            errorMessage: "Проверьте подключение к интернету",
-          });
-        }
-        if(err.status == 400) {
+        if(err.status == 401) {
           setError({
             isError: true,
             errorMessage: "Неправильные почта или пароль",

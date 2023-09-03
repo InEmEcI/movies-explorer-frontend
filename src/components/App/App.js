@@ -33,10 +33,14 @@ function App() {
   const shouldShowHeader = headerPaths.includes(location.pathname);
   const shouldShowFooter = footerPaths.includes(location.pathname);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
+  const [isCheckboxSavedClicked, setIsCheckboxSavedClicked] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
 
 
   useEffect(() => {
+    if(localStorage.getItem("isShort") == null) {
+      localStorage.setItem("isShort", 'false')
+    }
     if(localStorage.getItem("isShort") == "false") {
       setIsCheckboxClicked(() => false);
     } else {
@@ -82,6 +86,11 @@ function App() {
     setIsCheckboxClicked(!isCheckboxClicked);
     localStorage.setItem("isShort", !isCheckboxClicked);
   };
+
+  const toggleCheckboxSaveState = () => {
+    setIsCheckboxSavedClicked(!isCheckboxSavedClicked);
+  };
+
   return state !== undefined ? (
     <CurrentUserContext.Provider value={{ state, setState }}>
       <div className="App">
@@ -111,8 +120,8 @@ function App() {
                 <ProtectedRoute location={location} isAuth={state.isAuth}>
                   <SavedMovies
                     isLoading={isLoading}
-                    setIsCheckboxClicked={toggleCheckboxState}
-                    isCheckboxClicked={isCheckboxClicked}
+                    setIsCheckboxClicked={toggleCheckboxSaveState}
+                    isCheckboxClicked={isCheckboxSavedClicked}
                   />
                 </ProtectedRoute>
               }

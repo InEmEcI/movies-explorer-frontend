@@ -1,5 +1,5 @@
-export const baseUrl = "https://api.nemec.nomoredomains.xyz";
-// export const baseUrl = "http://localhost:3000";
+// export const baseUrl = "https://api.nemec.nomoredomains.xyz";
+export const baseUrl = "http://localhost:3000";
 export const moviesUrl = "https://api.nomoreparties.co";
 
 export const checkResponse = (res) => {
