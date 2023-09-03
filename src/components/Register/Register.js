@@ -60,7 +60,7 @@ function Register({ location }) {
                 isError: true,
                 errorMesage: "NOT FOUND",
               })    
-          : setError({ isError: true, errorMesage: "ошибка валидации" })
+          : setError({ isError: true, errorMesage: "непредвиденная ошибка" })
       );
   };
   return (
