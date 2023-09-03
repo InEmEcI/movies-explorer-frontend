@@ -125,7 +125,7 @@ function Profile() {
           <button
             className="profile__edit"
             type="submit"
-            disabled={isSubmitDisabled || isLoading}
+            disabled={isSubmitDisabled || inputErrors.email !== '' || isLoading}            
           >
             Редактировать
           </button>

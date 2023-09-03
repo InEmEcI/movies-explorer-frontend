@@ -89,7 +89,7 @@ function Login({ location }) {
         <Button
           content="Войти"
           type="submit"
-          isDisabled={!isFormValid || isLoading}
+          isDisabled={!isFormValid || inputErrors.email !== '' || isLoading}
         />
       </form>
 

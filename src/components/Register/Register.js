@@ -113,7 +113,7 @@ function Register({ location }) {
         <Button
           content="Зарегистрироваться"
           type="submit"
-          isDisabled={!isFormValid || isLoading}
+          isDisabled={!isFormValid || inputErrors.email !== '' || isLoading}
         />
       </form>
 
