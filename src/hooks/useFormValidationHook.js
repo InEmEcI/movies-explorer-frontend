@@ -17,6 +17,7 @@ export default function useFormValidatorHook() {
   const handleChange = (event) => {
     const target = event.target;
     const { name, value } = target;
+
     const form = target.closest("form");
 
     setInputValues((prevState) => {
@@ -27,8 +28,6 @@ export default function useFormValidatorHook() {
       return { ...prevState, [name]: target.validationMessage };
     });
 
-    setIsFormValid(form.checkValidity());
-
     switch (name) {
       case "name":
         {
@@ -37,6 +36,9 @@ export default function useFormValidatorHook() {
           }
           if (target.validity.typeMismatch) {
             setErrorMessage(name, errorType.typeMismatch.name);
+          }
+          if (target.validity.tooShort) {
+            setErrorMessage(name, errorType.tooShort.name);
           }
         }
         break;
@@ -48,15 +50,10 @@ export default function useFormValidatorHook() {
           if (target.validity.typeMismatch) {
             setErrorMessage(name, errorType.typeMismatch.email);
           }
-          const input = form
-            .querySelector("label[for='email']")
-            .getElementsByTagName("input")[0];
-          if (!validate(inputValues.email)) {
-            input.setCustomValidity(errorType.typeMismatch.email);
+          if (!validate(value)) {
+            target.setCustomValidity(errorType.typeMismatch.email);
             setIsFormValid(false);
-            
-          } else 
-          input.setCustomValidity("");
+          } else target.setCustomValidity("");
           setIsFormValid(true);
         }
         break;
@@ -65,7 +62,7 @@ export default function useFormValidatorHook() {
           setErrorMessage(name, errorType.valueMissing.default);
         }
         if (target.validity.tooShort) {
-          setErrorMessage(name, errorType.tooShort);
+          setErrorMessage(name, errorType.tooShort.password);
         }
       }
       case "search":
@@ -75,6 +72,7 @@ export default function useFormValidatorHook() {
         break;
     }
 
+    setIsFormValid(form.checkValidity());
   };
 
   const resetForm = useCallback(

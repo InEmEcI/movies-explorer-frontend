@@ -35,13 +35,13 @@ function Login({ location }) {
         }
       })
       .catch((err) => {
-        if(err.status == 401) {
+        if (err.status == 401) {
           setError({
             isError: true,
             errorMessage: "Неправильные почта или пароль",
           });
         }
-        if(err.status == 500) {
+        if (err.status == 500) {
           setError({
             isError: true,
             errorMessage: "INTERNAL SERVER ERROR",
@@ -89,7 +89,7 @@ function Login({ location }) {
         <Button
           content="Войти"
           type="submit"
-          isDisabled={!isFormValid || inputErrors.email !== '' || isLoading}
+          isDisabled={!isFormValid || inputErrors.email !== "" || isLoading}
         />
       </form>
 

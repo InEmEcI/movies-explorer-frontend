@@ -1,8 +1,6 @@
 import logo from "../../images/logo.svg";
 import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
-// import React, { useState } from "react";
-
 import Burger from "../Burger/burger";
 
 function Header({ isLoggeIn }) {

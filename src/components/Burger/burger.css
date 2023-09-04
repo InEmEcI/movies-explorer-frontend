@@ -83,17 +83,13 @@
   .burger__account {
     width: 100px;
     height: 32px;
-
     display: flex;
-    /* margin: 0; */
-    
-
     margin-bottom: 90px;
     margin-left: 10px;
+
     color: #fff;
     background-color: #202020;
     border-radius: 40px;
-
     font-size: 13px;    
     font-weight: 500;
     line-height: 12px;

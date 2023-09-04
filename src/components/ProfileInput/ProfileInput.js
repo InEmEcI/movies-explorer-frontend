@@ -13,7 +13,7 @@ export default function ProfileInput({
   validationContent,
 }) {
   return (
-    <label className="profile__label" key="name">
+    <label className="profile__label" htmlFor={name}>
       <p className="profile__inputTitle">{inputTitle}</p>
       <input
         className="profile__input"
