@@ -76,7 +76,8 @@ input:checked + .checkbox__span:before {
   border-radius: 50%;
 }
 
-.checkbox__txt {  
+.checkbox__txt {
+  /* margin: 0 30px 0 9px; */
   font-size: 13px;
   line-height: 18px;
 }
@@ -95,6 +96,10 @@ input:checked + .checkbox__span:before {
     margin-right: 19px;
   }
 
+  .checkbox__txt {
+    /* margin-right: 38px; */
+    /* margin-left: 16px; */
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -108,7 +113,9 @@ input:checked + .checkbox__span:before {
     display: none;
   }
 
-  .checkbox__txt {    
+  .checkbox__txt {
+    /* margin-top: 27px; */
+    /* margin-left: 9px; */
     font-size: 11px;
     line-height: 18px;
   }

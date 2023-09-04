@@ -10,7 +10,9 @@ import useFormValidatorHook from "../../hooks/useFormValidationHook";
 import { updateUserData } from "../../utils/MainApi";
 import { useState } from "react";
 
+
 function Profile() {
+  const [error, setError] = useState({ isError: false, errorMessage: "" });
   const navigate = useNavigate();
   const exit = (e) => {
     e.preventDefault();
@@ -78,14 +80,28 @@ function Profile() {
       })
       .then((res) => {
         setIsSuccessfullyUpdated(true);
+        setError({
+          isError: false,
+          errorMessage: "",
+        });
       })
       .catch((err) => {
         setIsLoading(false);
-        console.error(err);
+        if (err.status == 400) {
+          setError({
+            isError: true,
+            errorMessage: "Неверный родовой домен измените его на валидный",
+          });
+        }
+        if (err.status == 500) {
+          setError({
+            isError: true,
+            errorMessage: "INTERNAL SERVER ERROR",
+          });
+        }
         setIsSuccessfullyUpdated(false);
       });
   };
-
   return (
     <main>
       <section className="profile">
@@ -121,7 +137,9 @@ function Profile() {
           {isSuccessfullyUpdated && (
             <p className="profile__updated">Профиль успешно обновлен!</p>
           )}
-
+           {error.isError ? (
+          <span className="input__extraErrors">{error.errorMessage}</span>
+        ) : null}
           <button
             className="profile__edit"
             type="submit"

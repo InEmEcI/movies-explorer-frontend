@@ -68,6 +68,11 @@
   color: #ee3465;
 }
 
+.input__extraErrors {
+  font: 400 10px/normal Inter;
+  color: #ee3465;
+}
+
 @media screen and (max-width: 1279px) {
   .profile {
     padding: 236px 179px 269px 179px;
