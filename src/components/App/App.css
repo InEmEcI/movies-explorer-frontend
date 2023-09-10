@@ -1,0 +1,48 @@
+@import url('../../vendor/normalize.css');
+@import url('../../vendor/fonts/fonts.css');
+
+body{
+  background-color: #202020;    
+}
+
+.page {
+  /* display: flex; */
+  /* flex-direction: column; */
+  box-sizing: border-box;
+  max-width: 1280px;
+  min-width: 320px;
+  margin: 0 auto;
+  height: 100%;
+  background-color: #202020;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  color: #FFF;
+  font-style: normal;
+  line-height: normal;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: .7;
+  cursor: pointer;
+}
+
+a:link {
+  color: white
+}
+
+a:visited {
+  color: white;
+}
+
+button:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+li {
+  list-style-type: none;
+}

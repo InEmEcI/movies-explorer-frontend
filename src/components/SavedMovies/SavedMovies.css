@@ -1,0 +1,35 @@
+.movies {
+  padding: 70px;
+}
+
+.saved-movies {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 270px));
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  column-gap: 20px;
+  row-gap: 38px;
+}
+
+@media screen and (max-width: 1279px) {
+  .saved-movies {
+    margin: 0 auto;
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .movies {
+    padding: 0 30px;
+  }
+  .saved-movies {
+    gap: 34px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .movies {
+    padding: 0 14px;
+  }
+}

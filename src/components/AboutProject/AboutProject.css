@@ -1,0 +1,152 @@
+.about-project {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0;
+  justify-items: center;
+  max-width: 1140px;
+  min-height: 608px;
+}
+
+.about-project__name {
+  margin: 0;
+  padding: 110px 0 23px;
+  border-bottom: 1px solid #dadada;
+  font-size: 22px;
+  letter-spacing: -0.88px;
+}
+
+.about-project__texts {
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.about-project__title {
+  max-width: 550px;
+  font-size: 20px;
+  letter-spacing: -0.8px;
+  margin: 0;
+  padding: 70px 0 0;
+}
+
+.about-project__subtitle {
+  max-width: 550px;
+  margin: 0;
+  padding: 26px 0 110px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.about-project__weeks {
+  display: grid;
+  grid-template-rows: 36px 36px;
+  grid-template-columns: 20% 80%;
+  text-align: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+}
+
+.about-project__item {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 14px;
+  line-height: 36px;
+  color: #8b8b8b;
+}
+
+.about-project__item:first-child {
+  background-color: #3ddc84;
+  color: #000;
+}
+
+.about-project__item:nth-child(2) {
+  background-color: #303030;
+  color: #fff;
+}
+
+/* ------------------------------------ */
+
+@media screen and (max-width: 1279px) {
+  .about-project {
+    max-width: 668px;
+    min-height: 585px;
+  }
+
+  .about-project__name {
+    margin: 0;
+    padding: 88px 0 23px;
+    border-bottom: 1px solid #dadada;
+    font-size: 22px;
+    letter-spacing: -0.88px;
+  }
+
+  .about-project__texts {
+    gap: 30px;
+  }
+
+  .about-project__title {
+    max-width: 319px;
+  }
+
+  .about-project__subtitle {
+    max-width: 319px;
+    padding: 22px 0 93px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-project__weeks {
+    grid-template-columns: 21% 79%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about-project {
+    max-width: 284px;
+    min-height: 641px;
+  }
+
+  .about-project__name {
+    padding: 70px 0 28px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .about-project__texts {
+    display: flex;
+	flex-direction: column;
+    gap: 57px;
+    margin: 0;
+    padding: 60px 0 60px;
+  }
+
+  .about-project__title {
+    max-width: 284px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    padding: 0;
+  }
+
+  .about-project__subtitle {
+    max-width: 284px;
+    padding: 16px 0 0;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about-project__weeks {
+    grid-template-rows: 35px 35px;
+    grid-template-columns: 35% 65%;
+    font-size: 11px;
+  }
+
+  .about-project__item {
+    font-size: 11px;
+    line-height: 35px;
+  }
+}

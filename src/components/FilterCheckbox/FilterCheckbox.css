@@ -1,0 +1,122 @@
+.checkbox {
+  margin: 0 auto;
+}
+
+.checkbox__img {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox__image {
+  height: 40px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.checkbox__txt {
+  margin: 0;
+  padding-left: 13px;
+  font: 400 13px / normal Inter;
+  color: #fff;
+}
+
+.checkbox__lablel {
+  width: 36px;
+  height: 20px;
+  display: inline-block;
+  position: relative;
+}
+
+.checkbox__lablel input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkbox__span {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #343434;
+  -webkit-transition: 0.4s;
+  transition: 0.3s;
+}
+
+.checkbox__span:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 5px;
+  bottom: 2px;
+  background-color: #a0a0a0;
+  border: 2px solid white;
+  -webkit-transition: 0.4s;
+  transition: 0.3s;
+}
+
+input:checked ~ .checkbox__span {
+  background-color: #2be080;
+}
+
+input:checked + .checkbox__span:before {
+  -webkit-transform: translateX(12px);
+  -ms-transform: translateX(12px);
+  transform: translateX(12px);
+}
+
+.checkbox__span.checkbox__span_round {
+  border-radius: 30px;
+}
+
+.checkbox__span.checkbox__span_round:before {
+  border-radius: 50%;
+}
+
+.checkbox__txt {
+  /* margin: 0 30px 0 9px; */
+  font-size: 13px;
+  line-height: 18px;
+}
+
+@media screen and (max-width: 1279px) {
+  .checkbox__img {
+    margin-right: 0;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+  }
+
+  .checkbox__image {
+    margin-left: 19px;
+    margin-right: 19px;
+  }
+
+  .checkbox__txt {
+    /* margin-right: 38px; */
+    /* margin-left: 16px; */
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .checkbox__img {
+    margin: 0;
+    padding: 45px 0 0;
+    justify-content: center;
+  }
+
+  .checkbox__image {
+    display: none;
+  }
+
+  .checkbox__txt {
+    /* margin-top: 27px; */
+    /* margin-left: 9px; */
+    font-size: 11px;
+    line-height: 18px;
+  }
+}

@@ -1,0 +1,131 @@
+.movies-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.movies-card__img {
+  width: 100%;
+  min-height: 151px;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  cursor: pointer;
+}
+
+.movies-card-down {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 10px 0 13px;
+  border-bottom: 1px solid #424242;
+}
+
+.movies-card-down__name {
+  min-height: 32px;
+  max-width: 226px;
+  padding: 4px 0 0;
+  margin: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  box-orient: vertical;
+
+  color: #fff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.movies-card-down__icon {
+  background-image: url(../../images/white-heard-icon.svg);
+  border: 0;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.movies-card-down__icon_active {
+  background-image: url(../../images/active_heart.svg);
+  border: 0;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.movies-card-down__icon_active:hover {
+  background-image: url(../../images/deliteLike.svg);
+}
+
+.movies-card__duration {
+  color: #8b8b8b;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 7px 0 0;
+  margin: 0;
+}
+
+@media screen and (max-width: 1279px) {
+  .movies-card-down {
+    padding: 10px 0 25px;
+    border-bottom: 1px solid #424242;
+  }
+
+  .movies-card-down__name {
+    max-width: 295px;
+    min-height: 16px;
+    padding: 4px 0 0;
+    margin: 0;
+    color: #fff;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .movies-card__duration {
+    padding: 6px 0 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .movies-card-down {
+    padding: 10px 0 25px;
+    border-bottom: 1px solid #424242;
+  }
+
+  .movies-card-down__name {
+    max-width: 275px;
+    min-height: 15px;
+    padding: 5px 0 0;
+    margin: 0;
+    color: #fff;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .movies-card__duration {
+    font-size: 10px;
+    padding: 6px 0 0;
+  }
+}

@@ -1,0 +1,144 @@
+.search {
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search__line {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 19px;
+  border-radius: 9px;
+  background: #2f2f2f;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin: 0 auto;
+  position: relative;
+}
+
+.search__after-line {
+  width: 100%;
+  margin-top: 80px;
+  margin-bottom: 70px;
+  border: none;
+  background-color: #424242;
+  height: 1px;
+}
+
+.search__line-left {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search__line-left-icon {
+  width: 34px;
+  height: 34px;
+}
+
+.search__line-left-input {
+  margin-right: 15px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  width: 100%;
+  border: none;
+  border-radius: 9px;
+  background-color: #2f2f2f;
+  outline: none;
+  color: white;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.search__line-left-input:focus {
+  border-bottom: 1px solid #4285f4;
+  border-radius: 0px;
+}
+
+.search__line-rigth-btn {
+  padding: 8px 10px;
+  border-radius: 48px;
+  box-sizing: border-box;
+  background: #4285f4;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 18px;
+  height: fit-content;
+}
+
+.search__line-rigth-btn:disabled {
+  cursor: not-allowed;
+}
+
+.search__line-rigth-switch {
+  width: 36px;
+  height: 20px;
+  margin-left: 29px;
+  cursor: pointer;
+}
+
+.search__emptyArr {
+  position: absolute;
+  bottom: -26px;
+  left: 0;
+}
+
+@media screen and (max-width: 1279px) {
+
+  .search__line-rigth-btn {
+    margin-left: 20px;
+  }
+
+  .search__after-line {
+    margin-top: 109px;
+    margin-bottom: 80px;
+    border: none;
+    background-color: #424242;
+    height: 1px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .search__line {
+    padding: 0;
+    background-color: transparent;
+    display: block;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-radius: 9px;
+  }
+
+  .search__line-left {
+    background: #2f2f2f;
+    padding: 25px 20px;
+    box-sizing: border-box;
+    border-radius: 9px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .search__line-left-input {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  .search__line-rigth-btn {
+    margin-left: 10px;
+  }
+
+  .search__line-left-icon {
+    display: none;
+  }
+
+  .search__after-line {
+    width: 100%;
+    border: none;
+    background-color: #424242;
+    height: 1px;
+  }
+}
